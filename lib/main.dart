@@ -82,10 +82,55 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        // 自作関数の呼び出し
-        onPressed: _chooseJankenText,
-        child: const Icon(Icons.add),
+      // Rowで囲って3つのフローティングボタンを入れる
+      // floatingActionButton: FloatingActionButton(
+      //   // 自作関数の呼び出し
+      //   onPressed: _chooseJankenText,
+      //   child: const Icon(Icons.add),
+      // ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+              onPressed: (){
+                setState(() {
+                  jankenText='✊';
+                });
+              },
+            child: const Text(
+              '👊',
+              style: TextStyle(fontSize: 30),
+            ),
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+          FloatingActionButton(
+            onPressed: (){
+              setState(() {
+                jankenText='✌️';
+              });
+            },
+            child: const Text(
+              '✌️',
+              style: TextStyle(fontSize: 30),
+            ),
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+          FloatingActionButton(
+            onPressed: (){
+              setState(() {
+                jankenText='✋';
+              });
+            },
+            child: const Text(
+              '✋',
+              style: TextStyle(fontSize: 30),
+            ),
+          ),
+        ],
       ),
     );
   }
