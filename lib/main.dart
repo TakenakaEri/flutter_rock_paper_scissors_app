@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -37,14 +39,22 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
   //  変数の定義
-  String jankenText = '👊';
-  //自作関数
-  void _chooseJankenText(){
+  String myjankenText = '👊';
+  String computerJankenText = '👊';
+  List<String> jankenList=['✊','✌️','✋'];
+
+  void chooseComputerText(){
+    // 実行時にランダム関数を実行してオブジェクトを生成
+    final random=Random();
+    // random.nextInt(3)は実行後に決定されるのでfinalを使用→andomNumberは変更できない
+    // 実行時に乱数生成
+    final randomNumber=random.nextInt(3);
+    // 実行時にhandに代入
+    final hand=jankenList[randomNumber];
     setState(() {
-      jankenText='✋';
+      computerJankenText=hand;
     });
   }
-
   @override
   // setStateが呼び出されるたびに実行される
   Widget build(BuildContext context) {
@@ -60,12 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: .center,
           children: [
             Text(
-              '相手',
+              computerJankenText,
               style: TextStyle(fontSize: 30),
-            ),
-            Text(
-              '✌️',
-              style: TextStyle(fontSize: 100),
             ),
             SizedBox(
               height:80,
@@ -76,26 +82,21 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               // 変数を使用
-              jankenText,
+              myjankenText,
               style: TextStyle(fontSize: 200),
             ),
           ],
         ),
       ),
-      // Rowで囲って3つのフローティングボタンを入れる
-      // floatingActionButton: FloatingActionButton(
-      //   // 自作関数の呼び出し
-      //   onPressed: _chooseJankenText,
-      //   child: const Icon(Icons.add),
-      // ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
               onPressed: (){
                 setState(() {
-                  jankenText='✊';
+                  myjankenText='✊';
                 });
+                chooseComputerText();
               },
             child: const Text(
               '👊',
@@ -108,8 +109,9 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             onPressed: (){
               setState(() {
-                jankenText='✌️';
+                myjankenText='✌️';
               });
+              chooseComputerText();
             },
             child: const Text(
               '✌️',
@@ -122,8 +124,9 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             onPressed: (){
               setState(() {
-                jankenText='✋';
+                myjankenText='✋';
               });
+              chooseComputerText();
             },
             child: const Text(
               '✋',
