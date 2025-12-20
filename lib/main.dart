@@ -13,7 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -40,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //  変数の定義
   String myjankenText = Hand.rock.text;
   String computerJankenText = Hand.rock.text;
-  List<String> jankenList = ['Hand.rock', 'Hand.scissors', 'Hand.paper'];
+  // List<String> jankenList = [Hand.rock, Hand.scissors, Hand.paper];
 
   void chooseComputerText() {
     // 実行時にランダム関数を実行してオブジェクトを生成
@@ -69,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           // メインの方向に子を配置する
-          mainAxisAlignment: .center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(computerJankenText, style: TextStyle(fontSize: 30)),
             SizedBox(height: 80),
@@ -92,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
               });
               chooseComputerText();
             },
-            child: const Text(Hand.rock.text, style: TextStyle(fontSize: 30)),
+            child: Text(Hand.rock.text, style: TextStyle(fontSize: 30)),
           ),
           const SizedBox(width: 16),
           FloatingActionButton(
@@ -102,10 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
               });
               chooseComputerText();
             },
-            child: const Text(
-              Hand.scissors.text,
-              style: TextStyle(fontSize: 30),
-            ),
+            child: Text(Hand.scissors.text, style: TextStyle(fontSize: 30)),
           ),
           const SizedBox(width: 16),
           FloatingActionButton(
@@ -115,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
               });
               chooseComputerText();
             },
-            child: const Text(Hand.paper.text, style: TextStyle(fontSize: 30)),
+            child: Text(Hand.paper.text, style: TextStyle(fontSize: 30)),
           ),
         ],
       ),
@@ -131,11 +130,11 @@ enum Hand {
   String get text {
     switch (this) {
       case Hand.rock:
-        return Hand.rock.text;
+        return '👊';
       case Hand.scissors:
-        return Hand.scissors.text;
+        return '✌️';
       case Hand.paper:
-        return Hand.paper.text;
+        return '✋';
     }
   }
 }
